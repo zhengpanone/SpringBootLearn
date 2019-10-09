@@ -5,4 +5,6 @@ import com.zp.model.response.QueryResponseResult;
 
 public interface PageService {
     public QueryResponseResult findList(int page, int size, QueryPageRequest queryPageRequest);
+
+
 }

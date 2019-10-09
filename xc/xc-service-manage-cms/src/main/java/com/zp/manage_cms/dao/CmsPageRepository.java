@@ -1,8 +1,7 @@
 package com.zp.manage_cms.dao;
 
-import com.zp.CmsPage;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import com.zp.cms.CmsPage;
+
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 /***
@@ -25,7 +24,7 @@ public interface CmsPageRepository extends MongoRepository<CmsPage, String> {
      * @param pageType
      * @return
      */
-    CmsPage findByPageNameAAndPageType(String pageName, String pageType);
+    CmsPage findByPageNameAndPageType(String pageName, String pageType);
 
     /**
      * 根据站点和页面类型查询记录数
@@ -44,5 +43,5 @@ public interface CmsPageRepository extends MongoRepository<CmsPage, String> {
      * @param pageable
      * @return
      */
-    Page<CmsPage> findBySiteIdAndPageType(String siteId, String pageType, Pageable pageable);
+//    Page<CmsPage> findBySiteIdAndPageType(String siteId, String pageType, Pageable pageable);
 }

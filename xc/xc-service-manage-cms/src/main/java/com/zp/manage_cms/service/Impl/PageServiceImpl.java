@@ -1,6 +1,6 @@
 package com.zp.manage_cms.service.Impl;
 
-import com.zp.CmsPage;
+import com.zp.cms.CmsPage;
 import com.zp.cms.request.QueryPageRequest;
 import com.zp.manage_cms.dao.CmsPageRepository;
 import com.zp.manage_cms.service.PageService;

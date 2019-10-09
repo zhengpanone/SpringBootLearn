@@ -2,7 +2,6 @@ package com.zp.manage_cms.controller;
 
 import com.zp.api.cms.CmsPageControllerApi;
 import com.zp.cms.request.QueryPageRequest;
-import com.zp.manage_cms.service.Impl.PageServiceImpl;
 import com.zp.manage_cms.service.PageService;
 import com.zp.model.response.QueryResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/cms/page")
 public class CmsPageController implements CmsPageControllerApi {
     @Autowired
-    PageServiceImpl pageService;
+    PageService pageService;
 
     @Override
     @GetMapping("/list/{page}/{size}")

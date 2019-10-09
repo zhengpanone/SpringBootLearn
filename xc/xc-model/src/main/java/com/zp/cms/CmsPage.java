@@ -1,4 +1,4 @@
-package com.zp;
+package com.zp.cms;
 
 import lombok.Data;
 import lombok.ToString;
