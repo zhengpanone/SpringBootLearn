@@ -7,5 +7,5 @@ spring:
 
   data:
     mongodb:
-      uri: mongodb://root:root@localhost:27017
+      uri: mongodb://localhost:27017
       database: pm_cms
