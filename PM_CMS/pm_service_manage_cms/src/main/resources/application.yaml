@@ -1,0 +1,11 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: pm_manage_cms
+
+  data:
+    mongodb:
+      uri: mongodb://root:root@localhost:27017
+      database: pm_cms
