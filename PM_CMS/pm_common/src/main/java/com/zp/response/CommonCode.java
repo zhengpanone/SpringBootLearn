@@ -6,7 +6,7 @@ import lombok.ToString;
 public enum CommonCode implements ResultCode {
     SUCCESS(true, 10000, "操作成功！"),
 
-    FAILL(false, 11111, "操作失败");
+    FAIL(false, 11111, "操作失败");
     //操作是否成功
     boolean success;
     // 操作代码
@@ -22,16 +22,16 @@ public enum CommonCode implements ResultCode {
 
     @Override
     public boolean success() {
-        return false;
+        return success;
     }
 
     @Override
     public int code() {
-        return 0;
+        return code;
     }
 
     @Override
     public String message() {
-        return null;
+        return message;
     }
 }
