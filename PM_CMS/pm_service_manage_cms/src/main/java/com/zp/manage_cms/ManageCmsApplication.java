@@ -11,7 +11,6 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan(basePackages = {"com.zp.manage_cms"}) //扫描本项目下所有的类
 public class ManageCmsApplication {
     public static void main(String[] args) {
-
         SpringApplication.run(ManageCmsApplication.class, args);
     }
 

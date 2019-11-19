@@ -58,4 +58,10 @@ public class CmsProjectRepositoryTest {
             System.out.println(save);
         }
     }
+
+    @Test
+    public void testFindByProjectName() {
+        List<CmsProject> test_project_name = cmsProjectRepository.findByProjectName("test project name");
+        System.out.println(test_project_name);
+    }
 }
