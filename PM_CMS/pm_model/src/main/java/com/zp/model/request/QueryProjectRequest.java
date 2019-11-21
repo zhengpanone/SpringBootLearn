@@ -12,6 +12,8 @@ public class QueryProjectRequest {
     private String projectName;
     @ApiModelProperty("样本名称")
     private String sampleName;
+    @ApiModelProperty("pooling单名称")
+    private String poolingName;
     //。。。。
 
 

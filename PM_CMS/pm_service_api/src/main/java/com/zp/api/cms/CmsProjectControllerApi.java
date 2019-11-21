@@ -7,7 +7,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 
-@Api(value = "项目管理接口", description = "项目管理cms接口,提供增删改查")
+@Api(value = "项目管理接口", description = "项目管理cms接口,提供增、删、改、查")
 public interface CmsProjectControllerApi {
     //项目查询
     @ApiOperation("分页查询页面列表")

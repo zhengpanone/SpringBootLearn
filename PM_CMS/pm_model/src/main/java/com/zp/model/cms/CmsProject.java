@@ -15,8 +15,9 @@ import java.io.Serializable;
 public class CmsProject implements Serializable {
     @Id
     private String id;
-    // pooling单
-    private String poolingName;
+    //pooling单ID
+    private String poolingId;
+
     // 任务单名称
     private String projectName;
     // 文库号
@@ -33,11 +34,12 @@ public class CmsProject implements Serializable {
     private String indexI7;
     // 文库是否合格
     private String libraryIsTrue;
-    // 上机平台
-    private String seqPlatform;
     // lane
     private String lane;
     // 数据产出
     private String output;
+
+    //标签
+    private CmsTag[] cmsTags;
 
 }

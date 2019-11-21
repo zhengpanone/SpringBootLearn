@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface CmsProjectRepository extends MongoRepository<CmsProject, String> {
     //根据任务单名称查询
-    List<CmsProject> findByProjectName(String projectName);
+    List<CmsProject> findByProjectName( String projectName);
 
     //根据任务单名称和样本名称查询
     CmsProject findByProjectNameAndSampleName(String projectName, String sampleName);
