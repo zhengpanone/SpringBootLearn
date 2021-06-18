@@ -1,0 +1,12 @@
+jasypt:
+  encryptor:
+    password: ABCDEFG # 加密密钥
+    # 可以再项目启动时配置密钥 java -jar xxx.jar -Djasypt.encryptor.password=ABCDEFG
+    property: # 指定前缀、后缀
+      prefix: 'ENC('
+      suffix: ')'
+
+spring:
+  datasource:
+    username: ENC(wMMJ3swcJCJ1ftbvxhQoTBdMNBLvq29E8POzo//leWXdP/nvMDjH6pBOXWVwnkJC)
+    password: ENC(WyZFGgvl1cY4NTfeVfspi66gkQTdoOvzFWr1lNnQQLDi8P3Wi1ERmfdjET9YCrat)

@@ -16,7 +16,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping("queryAll")
+    @RequestMapping("/queryAll")
     public List<User> queryAll() {
         List<User> users = userService.queryAll();
         return users;
