@@ -1,8 +1,10 @@
 package com.zp.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,8 +16,11 @@ import java.util.Map;
 
 @RestController
 public class HelloWorldController {
+    @Autowired
+    DataSource dataSource;
     @RequestMapping("/")
     public Map<String, Object> sayHello() {
+        System.out.println("dataSource"+ dataSource);
         Map<String, Object> map = new HashMap<>();
         map.put("msg", "HelloWorld！");
         return map;
