@@ -3,4 +3,9 @@
 *.iws
 *.iml
 *.ipr
+.project
+.settings/
+.vscode/
+*/target/
+
 
