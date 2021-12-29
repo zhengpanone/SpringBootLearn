@@ -1,0 +1,6 @@
+server:
+  port: 8083
+
+author:
+  name: 张三
+  age: 20
