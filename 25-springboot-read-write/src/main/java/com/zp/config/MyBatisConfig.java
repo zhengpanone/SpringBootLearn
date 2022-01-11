@@ -13,7 +13,7 @@ import javax.annotation.Resource;
 import javax.sql.DataSource;
 
 /**
- * MyBatisConfig
+ * MyBatisConfig MyBatis配置
  *
  * @author zhengpanone
  * @since 2021-09-22

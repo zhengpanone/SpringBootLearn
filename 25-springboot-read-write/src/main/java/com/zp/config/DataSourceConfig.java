@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * DataSourceConfig
+ * DataSourceConfig 多数据源配置
  *
  * @author zhengpanone
  * @since 2021-09-22
@@ -21,19 +21,19 @@ import java.util.Map;
 @Configuration
 public class DataSourceConfig {
     @Bean
-    @ConfigurationProperties("spring.datasource.master")
+    @ConfigurationProperties(prefix = "spring.datasource.master")
     public DataSource masterDataSource() {
         return DataSourceBuilder.create().build();
     }
 
     @Bean
-    @ConfigurationProperties("spring.datasource.slave1")
+    @ConfigurationProperties(prefix = "spring.datasource.slave1")
     public DataSource slave1DataSource() {
         return DataSourceBuilder.create().build();
     }
 
     @Bean
-    @ConfigurationProperties("spring.datasource.slave2")
+    @ConfigurationProperties(prefix = "spring.datasource.slave2")
     public DataSource slave2DataSource() {
         return DataSourceBuilder.create().build();
     }
