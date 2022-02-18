@@ -3,9 +3,7 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <modules>
-        <module>25-springboot-mult-datasource</module>
-    </modules>
+
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -24,9 +22,9 @@
     <properties>
         <java.version>11</java.version>
     </properties>
-    <!--  <dependencyManagement>
+    <!--<dependencyManagement>
         
-    </dependencyManagement> -->
+    </dependencyManagement>-->
 
     <dependencies>
         <!--        web功能起步坐标-->
