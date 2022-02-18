@@ -1,13 +1,9 @@
 package com.zp.service.impl;
 
 import com.zp.annotation.Master;
-import com.zp.entity.Member;
 import com.zp.entity.UserEntity;
-import com.zp.mapper.MemberMapper;
 import com.zp.mapper.UserMapper;
-import com.zp.service.MemberService;
 import com.zp.service.UserService;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,7 +35,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserEntity> selectAll() {
-        return null;
+        return userMapper.findAll();
     }
 
     @Override

@@ -7,7 +7,7 @@
         insert into user (name) values (#{name})
     </insert>
 
-    <select id="selectAll" resultType="com.zp.entity.UserEntity">
+    <select id="findAll" resultType="com.zp.entity.UserEntity">
         select * from user;
     </select>
 </mapper>
