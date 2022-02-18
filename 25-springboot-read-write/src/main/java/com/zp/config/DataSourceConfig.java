@@ -15,6 +15,8 @@ import java.util.Map;
 /**
  * DataSourceConfig 多数据源配置
  *
+ * 配置了4个数据源，1个master，2两个slave，1个路由数据源。前3个数据源都是为了生成第4个数据源
+ *
  * @author zhengpanone
  * @since 2021-09-22
  */
@@ -38,6 +40,9 @@ public class DataSourceConfig {
         return DataSourceBuilder.create().build();
     }
 
+    /**
+     * 路由数据源
+     */
     @Bean
     public DataSource myRoutingDataSource(@Qualifier("masterDataSource") DataSource masterDataSource,
                                           @Qualifier("slave1DataSource") DataSource slave1DataSource,

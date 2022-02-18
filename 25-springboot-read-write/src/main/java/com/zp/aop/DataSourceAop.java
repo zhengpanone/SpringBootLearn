@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 /**
  * DataSourceAop
  * 设置路由key
- *
+ * 默认情况下，所有的查询都走从库，插入/修改/删除走主库。我们通过方法名来区分操作类型（CRUD）
  * @author zhengpanone
  * @since 2021-09-22
  */
@@ -21,14 +21,14 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class DataSourceAop {
     @Pointcut("!@annotation(com.zp.annotation.Master)" +
-            "&&execution(* com.zp.service..*.select*(..))" +
-            "|| execution(* com.zp.service..*.get*(..))")
+            "&&( execution(* com.zp.service..*.select*(..)) || execution(* com.zp.service..*.get*(..)))")
     public void readPointcut() {
 
     }
 
     @Pointcut("@annotation(com.zp.annotation.Master)" +
             "||execution(* com.zp.service..*insert*(..))" +
+            "||execution(* com.zp.service..*save*(..))" +
             "||execution(* com.zp.service..*add*(..))" +
             "||execution(* com.zp.service..*update*(..))" +
             "||execution(* com.zp.service..*edit*(..))" +

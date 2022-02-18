@@ -35,6 +35,9 @@ public class MyBatisConfig {
         return sqlSessionFactoryBean.getObject();
     }
 
+    /**
+     * 由于 Spring 容器中现在有4个数据源，所以我们需要为事务管理器和MyBatis手动指定一个明确的数据源。
+     */
     @Bean
     public PlatformTransactionManager platformTransactionManager() {
         return new DataSourceTransactionManager(myRoutingDataSource);

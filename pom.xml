@@ -21,16 +21,15 @@
 
     <properties>
         <java.version>11</java.version>
+
     </properties>
-    <!--<dependencyManagement>
-        
-    </dependencyManagement>-->
 
     <dependencies>
         <!--        web功能起步坐标-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <version>2.2.4.RELEASE</version>
         </dependency>
         <!--        热部署配置-->
         <dependency>
@@ -40,6 +39,10 @@
             <scope>runtime</scope>
             <!-- optional=true,依赖不会传递，该项目依赖devtools；
             之后依赖myboot项目的项目如果想要使用devtools，需要重新引入 -->
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <!--yml配置文件提示插件-->
         <dependency>

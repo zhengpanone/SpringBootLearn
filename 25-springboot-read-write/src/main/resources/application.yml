@@ -3,17 +3,17 @@ spring:
     master:
       jdbc-url: jdbc:mysql://localhost:3306/test
       username: root
-      passowrd: root
+      password: root
       dirver-class-name: com.mysql.cj.jdbc.Driver
     slave1:
       jdbc-url: jdbc:mysql://localhost:3306/read1
       username: root
-      passowrd: root
+      password: root
       dirver-class-name: com.mysql.cj.jdbc.Driver
     slave2:
       jdbc-url: jdbc:mysql://localhost:3306/read2
       username: root
-      passowrd: root
+      password: root
       dirver-class-name: com.mysql.cj.jdbc.Driver
 
 
