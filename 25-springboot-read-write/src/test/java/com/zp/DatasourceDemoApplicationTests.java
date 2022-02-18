@@ -21,6 +21,6 @@ public class DatasourceDemoApplicationTests {
     public void write() {
         Member member = new Member();
         member.setName("write");
-        memberService.insert(member);
+        //memberService.insert(member);
     }
 }

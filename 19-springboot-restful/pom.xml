@@ -11,7 +11,8 @@
     <groupId>springboot</groupId>
     <artifactId>19-springboot-restful</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>springboot-restful :: Spsringboot 实现 Restful 服务，基于 HTTP / JSON 传输 Demo</name>
+    <name>19-springboot-restful</name>
+    <description>Springboot 实现 Restful 服务，基于 HTTP / JSON 传输 Demo</description>
     <!-- Spring Boot 启动父依赖 -->
     <dependencies>
         <dependency>

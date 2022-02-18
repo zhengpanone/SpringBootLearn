@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zp.mapper.UserMapper">
-    <select id="getSettingCodeRule" resultType="com.bgi.boot.manage.model.CodeRuleVO">
-        SELECT a.encoding_head,a.encoding_self,a.encoding_end,a.ymd,a.len,a.len_type
-        FROM sys_setting s INNER JOIN l_auto_number a ON s.value=a.an_id
-        WHERE s.id=#{id}
-    </select>
-</mapper>

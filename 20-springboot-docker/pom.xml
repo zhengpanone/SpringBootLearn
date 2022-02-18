@@ -9,28 +9,35 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>com.zp</groupId>
     <artifactId>20-springboot-docker</artifactId>
     <version>1.0-SNAPSHOT</version>
     <description>Demo project for Spring Boot And Docker</description>
     <!--指定JDK版本-->
     <properties>
-        <java.version>11</java.version>
-        <docker.image.prefix>registry.aliyuncs.com/linhuatest</docker.image.prefix>
+        <java.version>1.8</java.version>
+        <docker.image.prefix>docker.io/zhengpanone</docker.image.prefix>
     </properties>
     <dependencies>
 
     </dependencies>
 
     <build>
-        <finalName>springboot-docker</finalName>
+        <finalName>${project.artifactId}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>11</source>
-                    <target>11</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <!--  跳过单元测试-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <skipTests>true</skipTests>
                 </configuration>
             </plugin>
             <plugin>
@@ -43,21 +50,47 @@
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <fork>
+                        <true/>
+                    </fork>
+                </configuration>
             </plugin>
+
+
             <!-- docker插件 -->
-           <plugin>
+            <!--<plugin>
                 <groupId>com.spotify</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
                 <version>1.2.2</version>
+                &lt;!&ndash;将插件绑定在某个phase执行&ndash;&gt;
+                <executions>
+
+                    <execution>
+                        <id>build-image</id>
+                        &lt;!&ndash;用户只需执行mvn package ，就会自动执行mvn docker:build&ndash;&gt;
+                        <phase>package</phase>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                    </execution>
+                </executions>
                 <configuration>
-                    <!--  <imageName>${docker.image.prefix}/${project.artifactId}</imageName>-->
-                    <!--Dockerfile文件所在目录-->
-                    <dockerDirectory>${project.basedir}</dockerDirectory>
-                    <!--TAG,这里用工程版本号-->
-                    <imageTags>
+                    &lt;!&ndash;Dockerfile文件所在目录&ndash;&gt;
+                    <dockerDirectory>${project.basedir}/docker</dockerDirectory>
+                    <imageName>${docker.image.prefix}/jdk8</imageName>
+                    &lt;!&ndash;TAG,这里用工程版本号&ndash;&gt;
+                    &lt;!&ndash;<imageTags>
                         <imageTag>${project.version}</imageTag>
                     </imageTags>
-                    <!--构建镜像的配置信息-->
+                    <baseImage>jdk8</baseImage>
+                    <maintainer>zhengpanone</maintainer>
+                    <workdir>/tmp</workdir>
+                    <cmd>["java","version"]</cmd>
+                    <entryPoint>["java","-jar","/${project.build.finalName}.jar"]</entryPoint>
+                    <dockerHost>http://172.28.116.253:2375</dockerHost>&ndash;&gt;
+
+                    &lt;!&ndash;构建镜像的配置信息&ndash;&gt;
                     <resources>
                         <resource>
                             <targetPath>/</targetPath>
@@ -66,8 +99,8 @@
                         </resource>
                     </resources>
                 </configuration>
-            </plugin>
-<!--            配置工程主入口-->
+            </plugin>-->
+            <!--    配置工程主入口-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>

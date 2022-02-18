@@ -15,7 +15,7 @@ redis:
   ## 数据库索引(默认为0)
   database: 0
   # host: 127.0.0.1
-  host: 172.28.116.193
+  host: 172.28.116.253
   port: 6379
   password:
   jedis:

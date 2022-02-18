@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-//@Slf4j
+@Slf4j
 public class HelloController {
 @RequestMapping(value = "/", method = RequestMethod.GET)
     public String test() {
         System.out.println("这是控制台日志");
-//        log.info("这是输出到文件的日志");
+        log.info("这是输出到文件的日志");
         return "Hello SpringBoot Docker";
     }
 }
