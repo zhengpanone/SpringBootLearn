@@ -1,6 +1,7 @@
 package com.zp.controller;
 
 import com.zp.pojo.City;
+import com.zp.response.ApiResult;
 import com.zp.service.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -12,27 +13,28 @@ public class CityRestController {
     @Autowired
     private CityService cityService;
 
-    @RequestMapping(value = "/api/city/{id}", method = RequestMethod.GET)
+    @GetMapping(value = "/api/city/{id}")
     public City findOneCity(@PathVariable("id") Long id) {
         return cityService.findCityById(id);
     }
 
-    @RequestMapping(value = "/api/city", method = RequestMethod.GET)
-    public List<City> findAllCity() {
-        return cityService.findAllCity();
+    @GetMapping(value = "/api/city")
+    public ApiResult<List<City>> findAllCity() {
+        return ApiResult.success(cityService.findAllCity());
     }
 
-    @RequestMapping(value = "/api/city", method = RequestMethod.POST)
-    public void createCity(@RequestBody City city) {
+    @PostMapping(value = "/api/city")
+    public ApiResult<Void> createCity(@RequestBody City city) {
         cityService.saveCity(city);
+        return ApiResult.success();
     }
 
-    @RequestMapping(value = "/api/city", method = RequestMethod.PUT)
+    @PutMapping(value = "/api/city")
     public void modifyCity(@RequestBody City city) {
         cityService.updateCity(city);
     }
 
-    @RequestMapping(value = "/api/city/{id}", method = RequestMethod.DELETE)
+    @DeleteMapping(value = "/api/city/{id}")
     public void modifyCity(@PathVariable("id") Long id) {
         cityService.deleteCity(id);
     }

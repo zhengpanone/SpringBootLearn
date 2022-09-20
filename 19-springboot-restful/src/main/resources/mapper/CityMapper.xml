@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zp.dao.CityDao">
     <resultMap id="BaseResultMap" type="com.zp.pojo.City">
         <result column="id" property="id"/>
@@ -9,8 +9,8 @@
     </resultMap>
     <parameterMap id="City" type="com.zp.pojo.City"/>
     <sql id="Base_Column_List">
-		id, province_id, city_name, description
-	</sql>
+        id, province_id, city_name, description
+    </sql>
     <select id="findById" resultMap="BaseResultMap" parameterType="java.lang.Long">
         select
         <include refid="Base_Column_List"/>
@@ -25,11 +25,9 @@
     </select>
 
     <insert id="saveCity" parameterMap="City" useGeneratedKeys="true" keyProperty="id">
-		insert into
-			city(id,province_id,city_name,description)
-		values
-			(#{id},#{provinceId},#{cityName},#{description})
-	</insert>
+        insert into city(id, province_id, city_name, description)
+        values (#{id}, #{provinceId}, #{cityName}, #{description})
+    </insert>
 
     <update id="updateCity" parameterMap="City">
         update
@@ -49,9 +47,8 @@
     </update>
 
     <delete id="deleteCity" parameterType="java.lang.Long">
-		delete from
-			city
-		where
-			id = #{id}
-	</delete>
+        delete
+        from city
+        where id = #{id}
+    </delete>
 </mapper>
