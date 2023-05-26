@@ -1,0 +1,14 @@
+spring:
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+  minio:
+    access-key: minioadmin
+    secret-key: minioadmin
+    bucket-name: testminio
+    url: http://192.168.1.16:9000
+
+  thymeleaf:
+    cache: false
