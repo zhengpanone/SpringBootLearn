@@ -1,0 +1,6 @@
+@hotname = 127.0.0.1
+
+GET http://{{hotname}}:18081/user
+
+###
+GET http://{{hotname}}:18082/order
