@@ -21,7 +21,9 @@
         <module>18-spring-boot-mybatis-xml</module>
         <module>40-third-config-import-bean</module>
         <module>43-activiti-spring-boot</module> -->
+        <module>39-spring-boot-minio</module>
         <module>46-dubbo-spring-boot-demo</module>
+        <module>47-rabbitmq-spring-boot</module>
     </modules>
 
     <!-- <dependencies>
