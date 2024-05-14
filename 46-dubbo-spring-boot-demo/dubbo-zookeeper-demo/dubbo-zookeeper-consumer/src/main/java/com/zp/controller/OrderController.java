@@ -14,6 +14,9 @@ import javax.annotation.Resource;
  */
 @RestController
 public class OrderController {
+    /**
+     *  @Reference invoker dubbo-provider
+     */
     @Resource
     private OrderService orderService;
 

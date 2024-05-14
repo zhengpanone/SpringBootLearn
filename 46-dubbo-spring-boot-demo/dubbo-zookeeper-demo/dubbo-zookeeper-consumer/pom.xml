@@ -7,9 +7,7 @@
 		<groupId>com.zp</groupId>
 		<artifactId>dubbo-zookeeper-demo</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
-		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.zp</groupId>
 	<artifactId>dubbo-zookeeper-consumer</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>dubbo-zookeeper-consumer</name>
@@ -66,6 +64,9 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<jvmArguments>--add-opens java.base/java.lang=ALL-UNNAMED</jvmArguments>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

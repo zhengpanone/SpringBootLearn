@@ -12,6 +12,7 @@ import org.apache.dubbo.config.annotation.DubboService;
  */
 @DubboService
 public class UserServiceImpl implements UserService {
+    @Override
     public String getUser() {
         return "zhengpanone";
     }

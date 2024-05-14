@@ -6,6 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
+import java.lang.management.ManagementFactory;
+
 /**
  * Author : zhengpanone
  * Date : 2023/11/29 10:21
@@ -21,6 +23,7 @@ public class ConsumerApplication {
     }
 
     public static void main(String[] args) {
+        System.out.println("JVM Arguments: "+ ManagementFactory.getRuntimeMXBean().getInputArguments());
         SpringApplication.run(ConsumerApplication.class, args);
     }
 }
