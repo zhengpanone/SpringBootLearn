@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+option java_multiple_files = true; // Protocol Buffers 编译器为每种消息类型生成单独的 Java 文件，而不是单个文件。
+
+package com.zp.proto; // 定义包名称，有助于防止不同项目之间的名称冲突。
+
+message Product {
+  int32 product_id = 1;
+  string name = 2;
+  string description = 4;
+  float price = 3;
+  int32 category_id = 5;
+}
+
+message ProductList{
+  repeated Product product = 1;
+}
+
+message Category {
+  int32 category_id = 1;
+  string name = 2;
+}
+
+service ProductService {
+
+  //unary - synchronous
+  //request-response stype [not streaming]
+  rpc getProductById(Product) returns(Product){}
+  rpc getProductByCategoryId(Category) returns(ProductList){}
+}

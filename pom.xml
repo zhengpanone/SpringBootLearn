@@ -23,11 +23,12 @@
         <module>43-activiti-spring-boot</module> -->
         <module>39-spring-boot-minio</module>
         <module>46-dubbo-spring-boot-demo</module>
-        <module>47-rabbitmq-spring-boot</module>
+        <!-- <module>47-rabbitmq-spring-boot</module> -->
         <module>48-ratelimiter-spring-boot</module>
         <module>49-thread-pool-spring-boot</module>
-        <module>50-spring-security-learn</module>
+        <!-- <module>50-spring-security-learn</module> -->
         <module>51-springboot-websocket</module>
+        <module>52-grpc-spring-boot-demo</module>
     </modules>
 
     <!-- <dependencies>
