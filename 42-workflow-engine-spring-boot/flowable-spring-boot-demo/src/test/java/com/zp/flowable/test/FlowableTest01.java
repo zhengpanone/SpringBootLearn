@@ -8,10 +8,9 @@ import org.flowable.engine.RepositoryService;
 import org.flowable.engine.impl.cfg.StandaloneProcessEngineConfiguration;
 import org.flowable.engine.repository.Deployment;
 import org.flowable.engine.repository.DeploymentQuery;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
@@ -89,4 +88,21 @@ public class FlowableTest01 {
             log.info("-----------------------------------------------------");
         }
     }
+
+    @DisplayName("查询部署流程信息")
+    @ParameterizedTest
+    @ValueSource(strings = {"2501"})
+    public void testQueryDeployment(String deploymentId) {
+        ProcessEngine processEngine = configuration.buildProcessEngine();
+        RepositoryService repositoryService = processEngine.getRepositoryService();
+        DeploymentQuery deploymentQuery = repositoryService.createDeploymentQuery();
+        // 查询所有的部署流程
+        Deployment deployment = deploymentQuery.deploymentId("2501").singleResult();
+        Assertions.assertNotNull(deployment);
+        log.info("Deployment ID: {}", deployment.getId());
+        log.info("Deployment Name: {}", deployment.getName());
+        log.info("Deployment Time: {}", deployment.getDeploymentTime());
+        log.info("-----------------------------------------------------");
+    }
+
 }
