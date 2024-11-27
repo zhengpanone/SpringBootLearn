@@ -20,20 +20,23 @@
         <mapstruct.version>1.4.2.Final</mapstruct.version>
         <projectlombok.version>1.18.20</projectlombok.version>
         <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
+        <mysql.version>8.0.33</mysql.version>
+        <junit.verison>5.9.3</junit.verison>
     </properties>
     <modules>
         <!-- <module>01-springboot-basic-configuration</module>
         <module>18-spring-boot-mybatis-xml</module>
         <module>40-third-config-import-bean</module>
         <module>43-activiti-spring-boot</module> -->
-        <module>39-spring-boot-minio</module>
-        <module>46-dubbo-spring-boot-demo</module>
+        <module>42-workflow-engine-spring-boot</module>
+        <!--        <module>39-spring-boot-minio</module>-->
+        <!--        <module>46-dubbo-spring-boot-demo</module>-->
         <!-- <module>47-rabbitmq-spring-boot</module> -->
-        <module>48-ratelimiter-spring-boot</module>
-        <module>49-thread-pool-spring-boot</module>
+        <!--        <module>48-ratelimiter-spring-boot</module>-->
+        <!--        <module>49-thread-pool-spring-boot</module>-->
         <!-- <module>50-spring-security-learn</module> -->
-        <module>51-springboot-websocket</module>
-        <module>52-grpc-spring-boot-demo</module>
+        <!--        <module>51-springboot-websocket</module>-->
+        <!--        <module>52-grpc-spring-boot-demo</module>-->
     </modules>
 
     <dependencyManagement>
@@ -46,13 +49,34 @@
                 <version>2.5.3</version>
             </dependency>
             <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <scope>test</scope>
+                <exclusions>
+                    <exclusion>
+                        <groupId>junit</groupId>
+                        <artifactId>junit</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter</artifactId>
+                <scope>test</scope>
+                <version>${junit.verison}</version>
+            </dependency>
+            <dependency>
                 <groupId>org.mapstruct</groupId>
                 <artifactId>mapstruct</artifactId>
                 <version>${mapstruct.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.mysql</groupId>
+                <artifactId>mysql-connector-j</artifactId>
+                <version>${mysql.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
-
 
 
 </project>

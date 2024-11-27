@@ -7,5 +7,6 @@
 .settings/
 .vscode/
 **/target/**
+**/rebel.xml
 
 
