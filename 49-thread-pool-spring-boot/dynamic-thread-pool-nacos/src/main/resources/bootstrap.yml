@@ -1,0 +1,11 @@
+spring:
+  cloud:
+    nacos:
+      config:
+        server-addr:  127.0.0.1:8848
+        group: dynamic-thread-pool # 命名空间
+        namespace: public
+        enabled: true
+        file-extension: yaml
+  application:
+    name: dynamic-thread-pool

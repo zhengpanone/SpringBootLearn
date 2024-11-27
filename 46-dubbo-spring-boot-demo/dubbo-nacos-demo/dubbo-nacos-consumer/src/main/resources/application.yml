@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: dubbo-nacos-consumer
+
+---
+server:
+  port: 18082
+
+---
+
+dubbo:
+  application:
+    name: ${spring.application.name}
+    # 这里要修改，否则会与provider的端口冲突
+    qos-port: 33333
+  protocol:
+    name: dubbo
+    port: -1
+
+  registry:
+    address: nacos://127.0.0.1:8848
+    parameters:
+      username: nacos
+      password: nacos
+      group: dubbo
+      namespace: f27201c5-b874-40f4-af6a-bf3fa6966598
+      # 将消费者注册到注册中心：默认为false,不会将消费者注册到nacos上
+      register-consumer-url: true

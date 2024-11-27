@@ -1,0 +1,15 @@
+server:
+  port: 18081
+
+dubbo:
+  application:
+    name: provider-application
+
+  protocol:
+    # 协议名称
+    # name: dubbo
+    name: tri
+    # 协议端口
+    port: 20880
+  registry:
+    address: zookeeper://127.0.0.1:2181

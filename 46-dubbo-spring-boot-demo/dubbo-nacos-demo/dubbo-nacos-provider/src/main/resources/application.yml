@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: dubbo-nacos-provider
+
+---
+server:
+  port: 18081
+---
+dubbo:
+  application:
+    name: ${spring.application.name}
+    metadata-type: remote
+  protocol:
+    # 协议名，默认为：dubbo
+    name: dubbo
+    # 端口，如果-1则会自动选用没有被占用的端口
+    port: -1
+
+  registry:
+    # 以nacos为服务的注册中心
+    address: nacos://127.0.0.1:8848
+    # 下面配置nacos相关的配置参数
+    parameters:
+      username: nacos
+      password: nacos
+      group: dubbo
+      namespace: f27201c5-b874-40f4-af6a-bf3fa6966598
+    simplified: true
+  metadata-report:
+    address: nacos://127.0.0.1:8848
