@@ -2,6 +2,10 @@ package com.zp.flowable.test;
 
 
 import lombok.extern.slf4j.Slf4j;
+import org.flowable.engine.ProcessEngine;
+import org.flowable.engine.ProcessEngineConfiguration;
+import org.flowable.engine.RepositoryService;
+import org.flowable.engine.RuntimeService;
 import org.flowable.engine.*;
 import org.flowable.engine.impl.cfg.StandaloneProcessEngineConfiguration;
 import org.flowable.engine.repository.Deployment;
@@ -12,6 +16,7 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -74,6 +79,8 @@ public class FlowableTest01 {
         // 2.获取RepositoryService
         RepositoryService repositoryService = processEngine.getRepositoryService();
         repositoryService.deleteDeployment(deploymentId, true);
+        // cascade 参数为true表示级联删除，即删除流程定义的同时删除流程定义关联的表单
+        repositoryService.deleteDeployment("1", true);
     }
 
     @DisplayName("查询所有的部署流程")

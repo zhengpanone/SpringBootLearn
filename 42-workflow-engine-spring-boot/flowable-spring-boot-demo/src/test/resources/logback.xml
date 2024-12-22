@@ -1,0 +1,21 @@
+<configuration>
+    <!-- 引入 Spring Boot 默认的日志格式 -->
+    <springProperty scope="context" name="LOG_LEVEL_PATTERN" source="logging.pattern.level" />
+    <springProperty scope="context" name="LOG_DATEFORMAT_PATTERN" source="logging.pattern.dateformat" />
+
+    <!-- Console Appender -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <!-- 使用 Spring Boot 默认的彩色日志格式 -->
+            <pattern>${LOG_DATEFORMAT_PATTERN:-%d{yyyy-MM-dd HH:mm:ss.SSS}} ${LOG_LEVEL_PATTERN:-%5p} [%t] %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Root Logger -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE" />
+    </root>
+
+    <!-- Flowable Logger -->
+    <logger name="org.flowable" level="DEBUG" />
+</configuration>
