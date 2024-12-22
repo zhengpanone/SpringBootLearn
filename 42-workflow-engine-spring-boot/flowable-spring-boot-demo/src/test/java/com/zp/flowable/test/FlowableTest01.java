@@ -2,17 +2,20 @@ package com.zp.flowable.test;
 
 
 import lombok.extern.slf4j.Slf4j;
-import org.flowable.engine.ProcessEngine;
-import org.flowable.engine.ProcessEngineConfiguration;
-import org.flowable.engine.RepositoryService;
+import org.flowable.engine.*;
 import org.flowable.engine.impl.cfg.StandaloneProcessEngineConfiguration;
 import org.flowable.engine.repository.Deployment;
 import org.flowable.engine.repository.DeploymentQuery;
+import org.flowable.engine.runtime.ProcessInstance;
+import org.flowable.task.api.Task;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 @Slf4j
 @DisplayName("流程引擎测试类01")
@@ -23,7 +26,7 @@ public class FlowableTest01 {
     public static void setUpEach() {
         configuration = new StandaloneProcessEngineConfiguration();
         configuration.setJdbcDriver("com.mysql.cj.jdbc.Driver");
-        configuration.setJdbcUrl("jdbc:mysql://localhost:3306/flowable-learn?serverTimezone=GMT%2B8&useSSL=false&createDatabaseIfNotExist=true&characterEncoding=utf8");
+        configuration.setJdbcUrl("jdbc:mysql://localhost:13306/flowable-learn?serverTimezone=GMT%2B8&useSSL=false&createDatabaseIfNotExist=true&characterEncoding=utf8");
         configuration.setJdbcUsername("root");
         configuration.setJdbcPassword("root");
         // 如果数据库中的表结构不存在就新建数据表
@@ -35,7 +38,7 @@ public class FlowableTest01 {
     public void testProcessEngine() {
         ProcessEngineConfiguration configuration = new StandaloneProcessEngineConfiguration();
         configuration.setJdbcDriver("com.mysql.cj.jdbc.Driver");
-        configuration.setJdbcUrl("jdbc:mysql://localhost:3306/flowable-learn?serverTimezone=GMT%2B8&useSSL=false&createDatabaseIfNotExist=true&characterEncoding=utf8");
+        configuration.setJdbcUrl("jdbc:mysql://localhost:13306/flowable-learn?serverTimezone=GMT%2B8&useSSL=false&createDatabaseIfNotExist=true&characterEncoding=utf8");
         configuration.setJdbcUsername("root");
         configuration.setJdbcPassword("root");
         // 如果数据库中的表结构不存在就新建数据表
@@ -63,13 +66,14 @@ public class FlowableTest01 {
     }
 
     @DisplayName("删除部署流程")
-    @Test
-    public void testDeleteDeployment() {
+    @ParameterizedTest
+    @ValueSource(strings = {"2501"})
+    public void testDeleteDeployment(String deploymentId) {
         // 1. 获取ProcessEngine对象
         ProcessEngine processEngine = configuration.buildProcessEngine();
         // 2.获取RepositoryService
         RepositoryService repositoryService = processEngine.getRepositoryService();
-        repositoryService.deleteDeployment("1", true);
+        repositoryService.deleteDeployment(deploymentId, true);
     }
 
     @DisplayName("查询所有的部署流程")
@@ -97,12 +101,70 @@ public class FlowableTest01 {
         RepositoryService repositoryService = processEngine.getRepositoryService();
         DeploymentQuery deploymentQuery = repositoryService.createDeploymentQuery();
         // 查询所有的部署流程
-        Deployment deployment = deploymentQuery.deploymentId("2501").singleResult();
+        Deployment deployment = deploymentQuery.deploymentId(deploymentId).singleResult();
         Assertions.assertNotNull(deployment);
         log.info("Deployment ID: {}", deployment.getId());
         log.info("Deployment Name: {}", deployment.getName());
         log.info("Deployment Time: {}", deployment.getDeploymentTime());
         log.info("-----------------------------------------------------");
+    }
+
+    @Test
+    @DisplayName("启动流程实列")
+    public void testRunProcess() {
+        ProcessEngine processEngine = configuration.buildProcessEngine();
+        // 通过runTimeService来启动流程实例
+        RuntimeService runtimeService = processEngine.getRuntimeService();
+        // 构建流程变量
+        Map<String, Object> variables = new HashMap<>();
+        variables.put("employee", "张三");
+        variables.put("nrOfHolidays", 3);
+        variables.put("description", "工作累了，出去玩玩");
+        // 启动流程实例
+        ProcessInstance holidayRequest = runtimeService.startProcessInstanceByKey("holidayRequest", variables);
+        log.info("ProcessInstance ProcessDefinitionId: {}", holidayRequest.getProcessDefinitionId());
+        log.info("ProcessInstance ActivityId: {}", holidayRequest.getActivityId());
+        log.info("ProcessInstance BusinessKey: {}", holidayRequest.getBusinessKey());
+        log.info("ProcessInstance Id: {}", holidayRequest.getId());
+    }
+
+
+    @Test
+    @DisplayName("查询任务")
+    public void testQueryTask() {
+        ProcessEngine processEngine = configuration.buildProcessEngine();
+        TaskService taskService = processEngine.getTaskService();
+        List<Task> list = taskService.createTaskQuery()
+                // 指定查询的流程编号
+                .processDefinitionKey("holidayRequest")
+                // 查询这个任务的处理人
+                .taskAssignee("zhangsan")
+                .list();
+        for (Task task : list) {
+            log.info("Task ID: {}", task.getId());
+            log.info("Task Name: {}", task.getName());
+            log.info("Task Description: {}", task.getDescription());
+            log.info("Task Assignee: {}", task.getAssignee());
+            log.info("Task ProcessDefinitionId: {}", task.getProcessDefinitionId());
+        }
+    }
+
+    @Test
+    @DisplayName("完成当前任务")
+    public void testCompleteTask() {
+        ProcessEngine processEngine = configuration.buildProcessEngine();
+        TaskService taskService = processEngine.getTaskService();
+        Task task = taskService.createTaskQuery()
+                .processDefinitionKey("holidayRequest")
+                .taskAssignee("zhangsan")
+                .singleResult();
+        // 创建流程变量
+        Map<String, Object> variables = new HashMap<>();
+        variables.put("approved", false);
+        // 完成任务
+        taskService.complete(task.getId(), variables);
+
+
     }
 
 }
