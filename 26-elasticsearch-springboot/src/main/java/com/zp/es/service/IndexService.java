@@ -1,4 +1,4 @@
-package com.zp.service;
+package com.zp.es.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.action.admin.indices.create.CreateIndexRequest;

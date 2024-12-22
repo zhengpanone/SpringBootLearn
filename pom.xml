@@ -19,6 +19,7 @@
         <maven.compiler.target>8</maven.compiler.target>
         <mapstruct.version>1.4.2.Final</mapstruct.version>
         <projectlombok.version>1.18.20</projectlombok.version>
+        <spring-boot.version>2.5.3</spring-boot.version>
         <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
         <mysql.version>8.0.33</mysql.version>
         <junit.verison>5.9.3</junit.verison>
@@ -28,14 +29,15 @@
         <module>18-spring-boot-mybatis-xml</module>
         <module>40-third-config-import-bean</module>
         <module>43-activiti-spring-boot</module> -->
+        <module>26-elasticsearch-springboot</module>
         <module>42-workflow-engine-spring-boot</module>
         <!--        <module>39-spring-boot-minio</module>-->
-        <!--        <module>46-dubbo-spring-boot-demo</module>-->
+               <module>46-dubbo-spring-boot-demo</module>
         <!-- <module>47-rabbitmq-spring-boot</module> -->
         <!--        <module>48-ratelimiter-spring-boot</module>-->
         <!--        <module>49-thread-pool-spring-boot</module>-->
         <!-- <module>50-spring-security-learn</module> -->
-        <!--        <module>51-springboot-websocket</module>-->
+               <module>51-springboot-websocket</module>
         <!--        <module>52-grpc-spring-boot-demo</module>-->
     </modules>
 
@@ -46,7 +48,7 @@
                 <artifactId>spring-boot-dependencies</artifactId>
                 <type>pom</type>
                 <scope>import</scope>
-                <version>2.5.3</version>
+                <version>${spring-boot.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>

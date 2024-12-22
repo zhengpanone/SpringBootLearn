@@ -9,9 +9,11 @@ spring:
 #elasticsearch
 elasticsearch:
   schema: http
-  address: 172.28.116.239:9200
+  address: 127.0.0.1:9201
   connectTimeout: 5000
   socketTimeout: 5000
   connectionRequestTimeout: 5000
   maxConnectNum: 100
   maxConnectPerRoute: 100
+  username: elastic
+  password: elastic
