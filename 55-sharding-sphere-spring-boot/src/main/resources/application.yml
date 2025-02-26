@@ -1,0 +1,79 @@
+spring:
+  # flyway
+  flyway:
+    locations: classpath:db/migration # 迁移脚本的位置
+    baseline-on-migrate: true # 在没有元数据表的情况下，针对非空Schema执行迁移时是否自动调用基线
+    enabled: true
+    sql-migration-prefix: V
+    sql-migration-suffixes: .sql
+
+  shardingsphere:
+    mode:
+      type: Memory
+    props:
+      #d打印Sql语句
+      sql-show: true
+    datasource:
+      #创建我们的ds0数据源
+      ds0:
+        #下边这些都是老套路了
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://localhost:3306/ds0?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT&allowPublicKeyRetrieval=true&createDatabaseIfNotExist=true
+        password: root
+        type: com.zaxxer.hikari.HikariDataSource
+        username: root
+        #创建我们的ds1数据源
+      ds1:
+        #一样的老套路
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://localhost:3306/ds1?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT&allowPublicKeyRetrieval=true&createDatabaseIfNotExist=true
+        password: root
+        type: com.zaxxer.hikari.HikariDataSource
+        username: root
+      names: ds0,ds1
+      #这里就比较重要了，这里是定义我们的分库分表的规则
+      rules:
+        sharding:
+          #分片算法
+          sharding-algorithms:
+            #为分库定义一个算法 到底是如何分的库
+            custom-db-inline:
+              props:
+                # 这里是具体的算法，我们根据userId取余进行分库，余数是几就分到ds几
+                algorithm-expression: ds$->{user_id%2}
+              type: INLINE
+              # 如何分表
+            custom-table-inline:
+              props:
+                # 根据orderId取余分表
+                algorithm-expression: t_order$->{order_id%3}
+              type: INLINE
+          tables:
+            # 这是我们的逻辑表 因为我们根本没有t_order这个表，这是我们的t_order0 1 2抽象出来的
+            t_order:
+              # 这是我们的真实表
+              actual-data-nodes: ds$->{0..1}.t_order$->{0..2}
+              database-strategy:
+                standard:
+                  # 分库算法的名称 也就是上边的
+                  sharding-algorithm-name: custom-db-inline
+                  sharding-column: user_id
+              table-strategy:
+                standard:
+                  # 分表算法名称
+                  sharding-algorithm-name: custom-table-inline
+                  sharding-column: order_id
+
+async:
+  executor:
+    thread:
+      core_pool_size: 5
+      max_pool_size: 20
+      queue_capacity: 90000
+      name:
+        prefix: async-
+mybatis-plus:
+  global-config:
+    db-config:
+      id-type: assign_id
+
