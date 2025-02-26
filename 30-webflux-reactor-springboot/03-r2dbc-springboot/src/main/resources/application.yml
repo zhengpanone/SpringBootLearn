@@ -1,0 +1,13 @@
+#  https://github.com/mirromutth/r2dbc-mysql
+spring:
+  r2dbc:
+    url: r2dbc:mysql://localhost:3306/reactive_db
+    username: root
+    password: root
+    pool:
+      initial-size: 100
+      max-size: 100
+---
+logging:
+  level:
+    org.springframework.r2dbc: debug #输出执行的sql
